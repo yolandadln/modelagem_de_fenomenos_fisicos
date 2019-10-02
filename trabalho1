@@ -51,15 +51,15 @@ def draw():
     strokeWeight(3)
     line(100, 420, 107, 450)#perna direita
     line(95, 420, 90, 450)#perna esquerda
-    line(97, 375, 120, 385)#braço do cima
+    line(97, 373, 120, 373)#braço do cima
     fill(102,194,165)
     rect(94, 370, 7, 50)#corpo
     ellipse(97, 360, 20, 20)#cabeça
-    line(97, 380, 120, 400)#braço de baixo
+    line(97, 380, 120, 390)#braço de baixo
     
     noFill()
-    arc(120, 390, 40, 35, -HALF_PI, HALF_PI)
-    line(120, 370, 120, 410)#corda do arco
+    #arc(120, 390, 40, 35, -HALF_PI, HALF_PI)
+    #line(120, 370, 120, 410)#corda do arco
     global sFlecha, vVert, vHori, soltar, vel, tiros,X,Y
     
     #vetor da flecha (s0)
@@ -75,11 +75,14 @@ def draw():
     rotate(direcao.heading())
     #heading() retorna a posição atual da flecha, em graus no sentido anti - horário a partir do ânulo 0
     rect(0,0, 40, 1)#flecha
+    noFill()
+    arc(0,0, 40, 35, -HALF_PI, HALF_PI)
+    line(0,-20, 0, 20)#corda do arco
     popMatrix()
 
     if soltar:
-        h = 30 * sin(-direcao.heading())
-        a = 30 * cos(-direcao.heading())
+        h =  sin(-direcao.heading())
+        a =  cos(-direcao.heading())
         sFlecha = PVector(vetFlecha.x + a, vetFlecha.y - h)
         vVert = vFlecha * sin(direcao.heading())
         vHori = vFlecha * cos(direcao.heading())
@@ -116,6 +119,6 @@ def bateuChao(tiro, n):
     else:
         return False
     
-def mouseReleased():
+def mouseReleased(): #mouseDragged()
     global soltar
     soltar = True
