@@ -1,4 +1,3 @@
-
 sFlecha = None
 vVert = 0
 vHori = 0
@@ -11,7 +10,6 @@ vel = []
 X=120
 Y=370
 k=1500
-
 
 def setup():
     size(650+k,500)
@@ -90,7 +88,6 @@ def draw():
         tiros.append(sFlecha)
         vel.append(PVector(vHori, vVert))
 
-        
     for i in range(0, len(tiros)):         
         if bateuChao(tiros[i], 50):
             vel[i] = PVector(0,0)
@@ -99,24 +96,13 @@ def draw():
             vel[i].y += g      
             tiros[i].add(vel[i])
         
-        
         fill(158,1,66)
         line(tiros[i].x, tiros[i].y,tiros[i].x-30,tiros[i].y)
         noStroke()
         fill(254,178,76)
         ellipse(tiros[i].x-30, tiros[i].y, 6, 6)
         stroke(3)
-        # X=tiros[i].x
-        # Y=tiros[i].y
         tiros[i]
-
-        
-    #X=120
-    #Y=370
-
-
-
-
 
 def bateuChao(tiro, n):
     if tiro.y + 10/2 >= height - n or tiro.x >= width-75:
