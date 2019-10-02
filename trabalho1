@@ -1,0 +1,79 @@
+sFlecha = None
+vVert = 0
+vHori = 0
+soltar = False
+g = 9.8
+vFlecha = 20
+tiros = []
+vel = []
+
+def setup():
+    size(650,500)
+    
+def draw():
+    background(200)
+    
+    #montando o alvo
+    fill(255, 0, 0)
+    r1 = rect(640, 150, 10, 200, 7)
+    fill(255)
+    r2 = rect(630, 175, 10, 150, 7)
+    fill(255, 0, 0)
+    r3 = rect(620, 200, 10, 100, 7)
+    fill(255)
+    r4 = rect(610, 225, 10, 50, 7)
+    fill(255, 0, 0)
+    r5 = rect(600, 240, 10, 20, 7)
+    
+    #desenhando o chão
+    fill(100)
+    rect(0, 450, width, 500)
+    
+    #criando o boneco
+    line(100, 420, 107, 450)
+    line(95, 420, 90, 450)
+    line(97, 375, 120, 385)
+    fill(255)
+    rect(94, 370, 7, 50)
+    ellipse(97, 360, 20, 20)
+    line(97, 380, 120, 400)
+    line(120, 370, 120, 410)
+    noFill()
+    arc(120, 390, 40, 35, -HALF_PI, HALF_PI)
+    
+    global sFlecha
+    global vVert
+    global vHori
+    global soltar
+    
+    #vetor da flecha (s0)
+    vetFlecha = PVector(40, -4)
+    
+    #angulo e direcao
+    angulo = PVector(mouseX, mouseY)
+    direcao = PVector.sub(angulo, vetFlecha)
+    
+    #flecha
+    pushMatrix()
+    translate(vetFlecha.x, vetFlecha.y)
+    rotate(direcao.heading())
+    #heading() retorna a posição atual da flecha, em graus no sentido anti - horário a partir do ânulo 0
+    flecha = rect(0, -5, 40, 1)
+    popMatrix()
+    
+    def mousePressed():
+        global soltar
+        soltar = True
+        
+    if soltar == True:
+        # altura(h) e alcance(a) calculados apartir da triângulo de lados a, h, V
+        h = 40 * sin(-direcao.heading())
+        a = 40 * cos(-direcao.heading())
+        sFlecha = PVector(vetFlecha.x + a, vetFlecha.y - h)
+        vVert = vFlecha * sin(direao.heading())
+        vHori = vFlecha * cos(direcao.heading())
+        soltar = False
+        tiros.append(sFlecha)
+        vel.append(PVector(vHori, vVert))
+        
+    
