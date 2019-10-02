@@ -1,51 +1,66 @@
+
 sFlecha = None
 vVert = 0
 vHori = 0
 soltar = False
-g = 1
-vFlecha = 31
+g = 1.62
+vFlecha = 70
+#vFlecha = 75
 tiros = []
 vel = []
-pontos = 0
+X=120
+Y=370
+k=1500
+
 
 def setup():
-    size(650,500)
+    size(650+k,500)
     
 def draw():
-    background(200)
-    
+    background(255,255,191)
+    noStroke()
+    fill(165,0,38)
+    rect(0, 0, width, 500)
+    fill(215,48,39)
+    rect(0, 90, width, 500)
+    fill(244,109,67)
+    rect(0, 180, width, 500)
+    fill(253,174,97)
+    rect(0, 270, width, 500)
+    fill(254,224,139)
+    rect(0, 360, width, 500)
+    stroke(0)
+    strokeWeight(3)
     #montando o alvo
-    fill(255, 0, 0)
-    r1 = rect(640, 150, 10, 200, 7)
+    fill(213,62,79)
+    r1 = rect(640+k, 150, 10, 200, 7)
     fill(255)
-    r2 = rect(630, 175, 10, 150, 7)
-    fill(255, 0, 0)
-    r3 = rect(620, 200, 10, 100, 7)
+    r2 = rect(630+k, 175, 10, 150, 7)
+    fill(213,62,79)
+    r3 = rect(620+k, 200, 10, 100, 7)
     fill(255)
-    r4 = rect(610, 225, 10, 50, 7)
-    fill(255, 0, 0)
-    r5 = rect(600, 240, 10, 20, 7)
+    r4 = rect(610+k, 225, 10, 50, 7)
+    fill(213,62,79)
+    r5 = rect(600+k, 240, 10, 20, 7)
     
     #desenhando o chão
-    fill(100)
+    fill(171,221,164)
     rect(0, 450, width, 500)
     
     #criando o boneco
+    strokeWeight(3)
     line(100, 420, 107, 450)#perna direita
     line(95, 420, 90, 450)#perna esquerda
     line(97, 375, 120, 385)#braço do cima
-    fill(255)
+    fill(102,194,165)
     rect(94, 370, 7, 50)#corpo
     ellipse(97, 360, 20, 20)#cabeça
     line(97, 380, 120, 400)#braço de baixo
     
     noFill()
     arc(120, 390, 40, 35, -HALF_PI, HALF_PI)
-    #ponta da flecha no arco: 
-    #ellipse(140,390,2,2)
-
     line(120, 370, 120, 410)#corda do arco
-    global sFlecha, vVert, vHori, soltar, vel, tiros
+    global sFlecha, vVert, vHori, soltar, vel, tiros,X,Y
     
     #vetor da flecha (s0)
     vetFlecha = PVector(120,390)
@@ -63,30 +78,40 @@ def draw():
     popMatrix()
 
     if soltar:
-        h = 50 * sin(-direcao.heading())
-        a = 50 * cos(-direcao.heading())
+        h = 30 * sin(-direcao.heading())
+        a = 30 * cos(-direcao.heading())
         sFlecha = PVector(vetFlecha.x + a, vetFlecha.y - h)
         vVert = vFlecha * sin(direcao.heading())
         vHori = vFlecha * cos(direcao.heading())
         soltar = False
         tiros.append(sFlecha)
         vel.append(PVector(vHori, vVert))
+
         
-    for i in range(0, len(tiros)):            
+    for i in range(0, len(tiros)):         
         if bateuChao(tiros[i], 50):
             vel[i] = PVector(0,0)
+            
         else:
             vel[i].y += g      
             tiros[i].add(vel[i])
-        fill(0)
-        ellipse(tiros[i].x, tiros[i].y, 5, 5)
+        fill(158,1,66)
+        ellipse(tiros[i].x-30, tiros[i].y, 6, 6)
+        line(tiros[i].x, tiros[i].y,tiros[i].x-30,tiros[i].y)
+        # X=tiros[i].x
+        # Y=tiros[i].y
+        tiros[i]
+
+        
+    #X=120
+    #Y=370
+
 
 
 
 
 def bateuChao(tiro, n):
-    # n: distância chão
-    if tiro.y + 5/2 >= height - n:
+    if tiro.y + 10/2 >= height - n or tiro.x >= width-75:
         return True
     else:
         return False
@@ -94,7 +119,3 @@ def bateuChao(tiro, n):
 def mouseReleased():
     global soltar
     soltar = True
-    
-#def bateuAlvo(tiro, r):
-    # r: parte do alvo atingida
-    #global pontos
