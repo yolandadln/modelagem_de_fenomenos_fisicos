@@ -1,13 +1,12 @@
-
 sFlecha = None
 vVert = 0
 vHori = 0
 soltar = False
-g = 1.62
-vFlecha = 40
-#vFlecha = 75
+g = 1
+vFlecha = 31
 tiros = []
 vel = []
+pontos = 0
 
 def setup():
     size(650,500)
@@ -44,14 +43,7 @@ def draw():
     arc(120, 390, 40, 35, -HALF_PI, HALF_PI)
     #ponta da flecha no arco: 
     #ellipse(140,390,2,2)
-    '''
-    if mousePressed:
-        fill(210)
-        line(mouseX, mouseY, 120, 370)
-        line(mouseX, mouseY, 120, 410)
-        line(mouseX, mouseY, 140,390)
-    else:
-    '''
+
     line(120, 370, 120, 410)#corda do arco
     global sFlecha, vVert, vHori, soltar, vel, tiros
     
@@ -86,13 +78,15 @@ def draw():
         else:
             vel[i].y += g      
             tiros[i].add(vel[i])
-        ellipse(tiros[i].x, tiros[i].y, 3, 3)
+        fill(0)
+        ellipse(tiros[i].x, tiros[i].y, 5, 5)
 
 
 
 
 def bateuChao(tiro, n):
-    if tiro.y + 10/2 >= height - n:
+    # n: distância chão
+    if tiro.y + 5/2 >= height - n:
         return True
     else:
         return False
@@ -100,3 +94,7 @@ def bateuChao(tiro, n):
 def mouseReleased():
     global soltar
     soltar = True
+    
+#def bateuAlvo(tiro, r):
+    # r: parte do alvo atingida
+    #global pontos
