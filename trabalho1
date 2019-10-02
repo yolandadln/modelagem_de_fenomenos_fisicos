@@ -19,15 +19,15 @@ def setup():
 def draw():
     background(255,255,191)
     noStroke()
-    fill(165,0,38)
+    fill(37,52,148)
     rect(0, 0, width, 500)
-    fill(215,48,39)
+    fill(44,127,184)
     rect(0, 90, width, 500)
-    fill(244,109,67)
+    fill(65,182,196)
     rect(0, 180, width, 500)
-    fill(253,174,97)
+    fill(161,218,180)
     rect(0, 270, width, 500)
-    fill(254,224,139)
+    fill(255,255,204)
     rect(0, 360, width, 500)
     stroke(0)
     strokeWeight(3)
@@ -44,7 +44,7 @@ def draw():
     r5 = rect(600+k, 240, 10, 20, 7)
     
     #desenhando o chão
-    fill(171,221,164)
+    fill(166,54,3)
     rect(0, 450, width, 500)
     
     #criando o boneco
@@ -98,9 +98,14 @@ def draw():
         else:
             vel[i].y += g      
             tiros[i].add(vel[i])
+        
+        
         fill(158,1,66)
-        ellipse(tiros[i].x-30, tiros[i].y, 6, 6)
         line(tiros[i].x, tiros[i].y,tiros[i].x-30,tiros[i].y)
+        noStroke()
+        fill(254,178,76)
+        ellipse(tiros[i].x-30, tiros[i].y, 6, 6)
+        stroke(3)
         # X=tiros[i].x
         # Y=tiros[i].y
         tiros[i]
