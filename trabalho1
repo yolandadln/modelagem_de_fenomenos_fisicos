@@ -41,10 +41,7 @@ def draw():
     noFill()
     arc(120, 390, 40, 35, -HALF_PI, HALF_PI)
     
-    global sFlecha
-    global vVert
-    global vHori
-    global soltar
+    global sFlecha, vVert, vHori, soltar
     
     #vetor da flecha (s0)
     vetFlecha = PVector(40, -4)
