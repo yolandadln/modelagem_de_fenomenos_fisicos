@@ -1,9 +1,11 @@
+
 sFlecha = None
 vVert = 0
 vHori = 0
 soltar = False
-g = 9.8
-vFlecha = 20
+g = 1.62
+vFlecha = 40
+#vFlecha = 75
 tiros = []
 vel = []
 
@@ -30,47 +32,71 @@ def draw():
     rect(0, 450, width, 500)
     
     #criando o boneco
-    line(100, 420, 107, 450)
-    line(95, 420, 90, 450)
-    line(97, 375, 120, 385)
+    line(100, 420, 107, 450)#perna direita
+    line(95, 420, 90, 450)#perna esquerda
+    line(97, 375, 120, 385)#braço do cima
     fill(255)
-    rect(94, 370, 7, 50)
-    ellipse(97, 360, 20, 20)
-    line(97, 380, 120, 400)
-    line(120, 370, 120, 410)
+    rect(94, 370, 7, 50)#corpo
+    ellipse(97, 360, 20, 20)#cabeça
+    line(97, 380, 120, 400)#braço de baixo
+    
     noFill()
     arc(120, 390, 40, 35, -HALF_PI, HALF_PI)
-    
-    global sFlecha, vVert, vHori, soltar
+    #ponta da flecha no arco: 
+    #ellipse(140,390,2,2)
+    '''
+    if mousePressed:
+        fill(210)
+        line(mouseX, mouseY, 120, 370)
+        line(mouseX, mouseY, 120, 410)
+        line(mouseX, mouseY, 140,390)
+    else:
+    '''
+    line(120, 370, 120, 410)#corda do arco
+    global sFlecha, vVert, vHori, soltar, vel, tiros
     
     #vetor da flecha (s0)
-    vetFlecha = PVector(40, -4)
+    vetFlecha = PVector(120,390)
     
     #angulo e direcao
     angulo = PVector(mouseX, mouseY)
     direcao = PVector.sub(angulo, vetFlecha)
-    
+
     #flecha
     pushMatrix()
     translate(vetFlecha.x, vetFlecha.y)
     rotate(direcao.heading())
     #heading() retorna a posição atual da flecha, em graus no sentido anti - horário a partir do ânulo 0
-    flecha = rect(0, -5, 40, 1)
+    rect(0,0, 40, 1)#flecha
     popMatrix()
-    
-    def mousePressed():
-        global soltar
-        soltar = True
-        
-    if soltar == True:
-        # altura(h) e alcance(a) calculados apartir da triângulo de lados a, h, V
-        h = 40 * sin(-direcao.heading())
-        a = 40 * cos(-direcao.heading())
+
+    if soltar:
+        h = 50 * sin(-direcao.heading())
+        a = 50 * cos(-direcao.heading())
         sFlecha = PVector(vetFlecha.x + a, vetFlecha.y - h)
-        vVert = vFlecha * sin(direao.heading())
+        vVert = vFlecha * sin(direcao.heading())
         vHori = vFlecha * cos(direcao.heading())
         soltar = False
         tiros.append(sFlecha)
         vel.append(PVector(vHori, vVert))
         
+    for i in range(0, len(tiros)):            
+        if bateuChao(tiros[i], 50):
+            vel[i] = PVector(0,0)
+        else:
+            vel[i].y += g      
+            tiros[i].add(vel[i])
+        ellipse(tiros[i].x, tiros[i].y, 3, 3)
+
+
+
+
+def bateuChao(tiro, n):
+    if tiro.y + 10/2 >= height - n:
+        return True
+    else:
+        return False
     
+def mouseReleased():
+    global soltar
+    soltar = True
