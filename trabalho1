@@ -15,23 +15,24 @@ def setup():
     size(650+k,500)
     
 def draw():
+    global sFlecha, vVert, vHori, soltar, vel, tiros,X,Y
     background(255,255,191)
     noStroke()
-    fill(37,52,148)
-    rect(0, 0, width, 500)
-    fill(44,127,184)
-    rect(0, 90, width, 500)
-    fill(65,182,196)
-    rect(0, 180, width, 500)
-    fill(161,218,180)
-    rect(0, 270, width, 500)
-    fill(255,255,204)
-    rect(0, 360, width, 500)
+    fill(37,52,148) #Céu
+    rect(0, 0, width, 500)#Céu
+    fill(44,127,184)#Céu
+    rect(0, 90, width, 500)#Céu
+    fill(65,182,196)#Céu
+    rect(0, 180, width, 500)#Céu
+    fill(161,218,180)#Céu
+    rect(0, 270, width, 500)#Céu
+    fill(255,255,204)#Céu
+    rect(0, 360, width, 500)#céu
     stroke(0)
     strokeWeight(3)
     #montando o alvo
     fill(213,62,79)
-    r1 = rect(640+k, 150, 10, 200, 7)
+    r1 = rect(640+k, 150, 10, 200, 7)#o maior
     fill(255)
     r2 = rect(630+k, 175, 10, 150, 7)
     fill(213,62,79)
@@ -39,7 +40,7 @@ def draw():
     fill(255)
     r4 = rect(610+k, 225, 10, 50, 7)
     fill(213,62,79)
-    r5 = rect(600+k, 240, 10, 20, 7)
+    r5 = rect(600+k, 240, 10, 20, 7)#o menor
     
     #desenhando o chão
     fill(166,54,3)
@@ -58,7 +59,6 @@ def draw():
     noFill()
     #arc(120, 390, 40, 35, -HALF_PI, HALF_PI)
     #line(120, 370, 120, 410)#corda do arco
-    global sFlecha, vVert, vHori, soltar, vel, tiros,X,Y
     
     #vetor da flecha (s0)
     vetFlecha = PVector(120,390)
@@ -102,7 +102,7 @@ def draw():
         fill(254,178,76)
         ellipse(tiros[i].x-30, tiros[i].y, 6, 6)
         stroke(3)
-        tiros[i]
+        #tiros[i]
 
 def bateuChao(tiro, n):
     if tiro.y + 10/2 >= height - n or tiro.x >= width-75:
