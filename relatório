@@ -1,0 +1,34 @@
+sFlecha é a posição inicial das flechas; elas são atiradas sempre de um mesmo ponto ((120,390))
+vVert é a velocidade vertical
+vHori é a velocidade horizontal
+soltar é o argumento que usaremos mais tarde para chamar a função de tiro quando o mouse for clicado
+g é a gravidade; tivemos que adaptar para ficar vizualmente verossímel
+vFlecha é a velocidade inicial da flecha; o usuário n pode escolher a velocidade com que a flecha é lançada
+tiros é uma matriz que vai ser preenchida mais tarde
+vel, de velocidades, é também uma matriz que vai ser preenchida mais tarde
+k é o quanto se quer aumentar de tela para caso se queira um alvo mais distante
+
+criamos a tela
+para cada frame:
+	trazemos as variáveis globais para dentro da função
+	desenhamos o céu
+	desenhamos o alvo
+	desenhamos o chão
+	desenhamos o boneco sem o arco
+	criamos o vetor flecha, que vai da origem ao ponto de onde a flecha é lançada
+	criamos o vetor angulo, que vai da origem ao cursor
+	criamos o vetor direcao, que vai do ponto de onde a flecha é lançada ao cursor(proporcional as medidas do que seria o vetor velocidade inicial)
+	desenhamos o arco de forma que ele gire em direção ao mouse
+	verificamos se soltar==True( será quando o mouse der um clique)
+	Se for, começamos a programar o movimento da flecha deste modo:
+		h e a são as componentes vertical e horizontal respectivamente do  vetor direção da flecha na hora do lançamento
+		a posição da flecha agora é a anterior, inicial, mais h e a somados as coordenadas x e y respectiamente 
+		atribuimos valores as velocidades vertical e horizontal de acordo cm o angulo formado
+		fazemos soltar==False para sair do loop
+		atualizamos tiros cm a posição da flecha
+		atualizamos vel com o vetor de velocidades vertical e horizontal
+	para cada flecha já atirada, descreveremos seu movimento da seguinte maneira:
+		conferimos se ela está parada ou em movimento
+		se parada, deixamos comoo está
+		se não, atualizamos a velocidade em y conforme a gravidade deve ter agido sobre
+		desenhamos as flechas nas posições que vão sendo atualizadas até pararem como linhas paralelas ao chão
