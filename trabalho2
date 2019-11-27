@@ -15,7 +15,7 @@ r = 25 #o raio do circulo é 50 - usei 25 para a referencia
 
 
 def setup():
-    size(500,500)
+    size(450,500)
     rectMode(CORNERS)
     ellipseMode(CENTER)
     
@@ -69,9 +69,10 @@ def draw():
     j = r*sin(-t)
     
 
-    background(225)
-    fill(255,0,0)
+    background(218,227,175)
+    fill(214,14,0)
     ellipse(250,350,100,100)
+    fill(100,202,214)
     ellipse(p.x,600- p.y, 25, 25)
     noFill()
     strokeWeight(3)
@@ -79,9 +80,7 @@ def draw():
     rect(xmin-25/2, 600 - ymax-25/2, xmax+25/2, 600 - ymin+25/2)
     ellipse(250,350,100,100)
     ellipse(p.x, 600-p.y, 25, 25)
-    fill(255)
-    ellipse(i+250,350-j,5,5)
+    fill(237,193,74)
+    ellipse(i+250,350-j,15,15)
     
     noStroke()
-    
-    
