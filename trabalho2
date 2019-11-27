@@ -8,16 +8,16 @@ ymin = 150
 ymax = 500
 oldt = millis()/1000.0
 c2=PVector(250,250)
-
+n_ratas=1
 
 
 def setup():
-    size(800,800)
+    size(500,500)
     rectMode(CORNERS)
     ellipseMode(CENTER)
     
 def draw():
-    global oldt,p, v
+    global oldt,p, v,n_ratas
     F = v.copy()
     F.mult(-f)
     F.add(g)
@@ -52,7 +52,8 @@ def draw():
         VV=PVector(-V.y,V.x)
         #line(p.x,600-p.y,V.x,V.y)
         if ((V.x*v.x)+(V.y*v.y))>=0:
-            print("RATA")
+            print(" {} RATA(S)".format(n_ratas))
+            n_ratas+=1
             proj=((v.x*V.x+v.y*V.y)/(V.x**2+V.y**2))*V
             mod=proj.mag()
             v=v-2*proj
