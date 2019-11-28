@@ -19,9 +19,10 @@ def setup():
     size(450,500)
     rectMode(CORNERS)
     ellipseMode(CENTER)
-    
+
 def draw():
-    global oldt,p, v,n_ratas, teta, r, k
+    global oldt,p, v,n_ratas, teta, r, k,font
+
     F = v.copy()
     F.mult(-f)
     F.add(g)
@@ -91,3 +92,7 @@ def draw():
     if mousePressed:
         p=PVector(mouseX,mouseY-300)
         v=PVector(0,-100)
+    
+    textFont(createFont("Cooper", 40))
+    fill(0)
+    text("Arthur e Yolanda",50,55)  
