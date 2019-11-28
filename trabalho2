@@ -1,7 +1,7 @@
 p = PVector(10, 500) #posicao
 v = PVector(90, 0) #velocidade
 g = PVector(0, -200) #aceleracao (gravidade)
-f = 0.2 #forca de retardo
+f = 0.1 #forca de retardo
 xmin = 50
 xmax = 400
 ymin = 150
@@ -12,7 +12,7 @@ r2=50 #raio da bola vermelha
 r1=15 #raio da bolinha azul
 n_ratas=1 #numero de colisoes
 k=1 #constate de atrito
-q=2 #constante de velocidade
+q=1 #constante de velocidade
 o=-1 #orientacao; pra mudar faz com 1
 
 teta = PI*2 #posicao inicial da referencia (para o movimento da bolinha amarela)
@@ -96,6 +96,8 @@ def draw():
         p=PVector(mouseX,mouseY-300)
         v=PVector(0,-100) #atualiza a posicao e velocidade da bolinha para o lugar onde se da o clique do mouse
     
-    textFont(createFont("Cooper", 40))
+    textFont(createFont("Cooper", 30))
     fill(0)
-    text("Arthur e Yolanda",50,55)  #escreve a mensagem la encima
+    text("Feliz Natal e Boas Festas",50,55)  #escreve a mensagem la encima
+    textFont(createFont("Cooper", 15))
+    text("Arthur e yolanda",275,75) 
