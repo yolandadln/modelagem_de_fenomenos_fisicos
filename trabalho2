@@ -1,36 +1,37 @@
-p = PVector(10, 500)
-v = PVector(90, 0)
-g = PVector(0, -200)
-f = 0.2
+p = PVector(10, 500) #posicao
+v = PVector(90, 0) #velocidade
+g = PVector(0, -200) #aceleracao (gravidade)
+f = 0.2 #forca de retardo
 xmin = 50
 xmax = 400
 ymin = 150
-ymax = 500
-oldt = millis()/1000.0
-c2=PVector(250,250)
-n_ratas=1
-k=1
-q=1
+ymax = 500 #
+oldt = millis()/1000.0 #tempo
+c2=PVector(250,250) #centro da bola vermelha
+n_ratas=1 #numero de colisoes
+k=1 #constate de atrito
+q=1 #constante de velocidade
+o=-1 #orientacao; pra mudar faz com 1
 
-teta = PI*2 #posicao inicial da referencia
-r = 25 #o raio do circulo é 50 - usei 25 para a referencia
+teta = PI*2 #posicao inicial da referencia (para o movimento da bolinha amarela)
+r = 25 #o raio do circulo é 50 - usei 25 para a referencia (assim a bolinha amarela fica no entre a borda e o centro)
 
 
 def setup():
     size(450,500)
     rectMode(CORNERS)
-    ellipseMode(CENTER)
+    ellipseMode(CENTER) #padrao do processing
 
 def draw():
-    global oldt,p, v,n_ratas, teta, r, k,font,q
+    global oldt,n_ratas,teta,font,r,k,q,o,p,v
 
-    F = v.copy()
-    F.mult(-f)
-    F.add(g)
-    t = millis()/1000.00
-    dt = t- oldt
-    oldt = t
-    dp = v.copy()
+    F = v.copy() #F sera a forca que age sobre a bolinha
+    F.mult(-f) #multiplica pelo fator de retardo
+    F.add(g) #add a aceleracao
+    t = millis()/1000.00 #conta o tempo
+    dt = t- oldt #conta a variacao 
+    oldt = t #atualiza o oldt
+    dp = v.copy() 
     dp.mult(dt)
     p.add(dp)
     F.mult(dt)
@@ -47,29 +48,27 @@ def draw():
         v.y = -v.y
     if p.y < ymin:
         p.y = ymin + (ymin - p.y)
-        v.y = -v.y
+        v.y = -v.y #detecta colisoes com as paredes e muda o movimento da particula
         
         
         
     Distancia_entre_centros=(PVector.sub(c2,p)).mag() #((p.x-250)**2+((600-p.y)-250)**2)**0.5
-    if Distancia_entre_centros<=125/2:
-        V=PVector.sub(c2,p)
-        V=V/V.mag()
-        VV=PVector(-V.y,V.x)
-        #line(p.x,600-p.y,V.x,V.y)
-        if ((V.x*v.x)+(V.y*v.y))>=0:
-            print(" {} RATA(S)".format(n_ratas))
-            n_ratas+=1
-            proj=((v.x*V.x+v.y*V.y)/(V.x**2+V.y**2))*V
-            mod=proj.mag()
-            v=v-2*proj
-            v=v.add(VV.mult(mod*k*q))
+    if Distancia_entre_centros<=125/2: #detecta a colisao com a bola vermelha
+        V=PVector.sub(c2,p) 
+        V=V/V.mag() #vetor unitaria que liga um centro ao outro
+        VV=PVector(o*V.y,-o*V.x) #vetor unitario tangente a bola vermelha no ponto de colisao
+        if ((V.x*v.x)+(V.y*v.y))>=0: #isso impede que erros ocorram na deteccao de colisao por motivos de alta velocidade e afins
+            print(" {} RATA(S)".format(n_ratas)) #printa o numero de colisoes como RATA(S)
+            n_ratas+=1 #atualiza o nnumero de colisoes para o proximo print
+            proj=((v.x*V.x+v.y*V.y)/(V.x**2+V.y**2))*V #faz a projecao da velocidade sobre V
+            mod=proj.mag() #modulo da projecao
+            v=v-2*proj #atualiza a velocidade de acordo com a colisao (sem cnsiderar ainda a velocidade a atrito da bola vermelha
+            v=v.add(VV.mult(mod*k*q)) #atualiza a velocidade levando em consideracao a velocidade (dependendte da velocidade da vermleha e atrito entre as duas) que a bola vermelha imprime na azul
         
         
-    t = 6*float(millis())/1000
-    #atualizando a posicao: velocidade*delta_t/r
-    i = r*cos(-t)
-    j = r*sin(-t)
+    t = 6*float(millis())/1000 #atualizando a posicao: velocidade*delta_t/r
+    i = r*cos(o*q*t)
+    j = r*sin(o*q*t) #faz o movimento da bolinha vermelha, leando em consideracao a velocidade
     
 
     background(218,227,175)
@@ -86,14 +85,14 @@ def draw():
     ellipse(250,350,100,100)
     ellipse(p.x, 600-p.y, 25, 25)
     fill(255,172,0)
-    ellipse(i+250,350-j,15,15)
+    ellipse(i+250,350-j,15,15) #desenha tudo
     
     noStroke()
 
     if mousePressed:
         p=PVector(mouseX,mouseY-300)
-        v=PVector(0,-100)
+        v=PVector(0,-100) #atualiza a posicao e velocidade da bolinha para o lugar onde se da o clique do mouse
     
     textFont(createFont("Cooper", 40))
     fill(0)
-    text("Arthur e Yolanda",50,55)  
+    text("Arthur e Yolanda",50,55)  #escreve a mensagem la encima
