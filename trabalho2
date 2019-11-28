@@ -10,6 +10,7 @@ oldt = millis()/1000.0
 c2=PVector(250,250)
 n_ratas=1
 k=1
+q=1
 
 teta = PI*2 #posicao inicial da referencia
 r = 25 #o raio do circulo é 50 - usei 25 para a referencia
@@ -21,7 +22,7 @@ def setup():
     ellipseMode(CENTER)
 
 def draw():
-    global oldt,p, v,n_ratas, teta, r, k,font
+    global oldt,p, v,n_ratas, teta, r, k,font,q
 
     F = v.copy()
     F.mult(-f)
@@ -62,7 +63,7 @@ def draw():
             proj=((v.x*V.x+v.y*V.y)/(V.x**2+V.y**2))*V
             mod=proj.mag()
             v=v-2*proj
-            v=v.add(VV.mult(mod*k))
+            v=v.add(VV.mult(mod*k*q))
         
         
     t = 6*float(millis())/1000
