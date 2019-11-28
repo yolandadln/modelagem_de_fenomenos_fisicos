@@ -1,5 +1,5 @@
 p = PVector(10, 500)
-v = PVector(100, 0)
+v = PVector(75, 0)
 g = PVector(0, -200)
 f = 0.1
 xmin = 50
