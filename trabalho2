@@ -100,4 +100,4 @@ def draw():
     fill(0)
     text("Feliz Natal e Boas Festas",50,55)  #escreve a mensagem la encima
     textFont(createFont("Cooper", 15))
-    text("Arthur e yolanda",275,75) 
+    text("Arthur e Yolanda",275,75) 
