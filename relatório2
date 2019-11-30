@@ -14,10 +14,12 @@ r = distancia entre a bolinha de referência e o centro do circulo que gira
 No começo do código (função draw), é descrito o movimento da bolinha menor. Descrevemos, dentro disso, a colisão com as paredes também. 
 Após isso, calculamos a distância entre os centros e fizemos uma condição (if) da distância ser menor ou igual a soma dos raios. caso seja verdade, significa que as bolas colidiram. 
 Dito isso, criamos um vetor V que é normal e unitário. Criamos também  vetor VV que é o vetor tangente à bola maior e unitário. 
-Fizemos mais uma condição (if) para evitar qu a bolinha menor entre na bola mior (tivemos esse problema mais cedo).
-.
-.
-.
+Fizemos mais uma condição (if) para evitar qu a bolinha menor entre na bola maior (tivemos esse problema mais cedo).
+
+Verificamos, então, se a bolinha já fez a colisão ou se ainda deverá fazer.
+Nesse seguundo caso, deverá fazer quando o vetor velocidade estiver na direção do centro da bola maior. Quando isso acontece, o produto escalar de V com v é positivo.
+Isso se resume à nossa condição. Assim, é realizada a colisão.
+
 Criamos t (tempo) a partir da função millis(). As variáveis i e j são as posições da bolinha de referencia. 
 
 A última condição (if) atualiza a última posição para a posiçao atual do mouse. O vetor velocidade também é alterado. 
