@@ -1,0 +1,33 @@
+#dimensoes do jogo:
+x = 800
+y = 400
+
+def setup():
+    size(x,y)
+    
+def draw():
+    fill(36, 28, 255)
+    rect(0, 0, x, 3*y/60)
+    rect(0, 3*y/60, x, 6*y/60)
+    fill(51, 0, 255)
+    rect(0, 6*y/60, x, 9*y/60)
+    rect(0, 9*y/60, x, 12*y/60)
+    fill(179, 0, 204)
+    rect(0, 12*y/60, x, 13*y/60)
+    fill(225, 0, 255)
+    rect(0, 13*y/60, x, 14*y/60)
+    fill(255, 59, 85)
+    rect(0, 14*y/60, x, 15*y/60)
+    fill(255, 98, 46)
+    rect(0, 15*y/60, x, 16*y/60)
+    fill(255, 166, 33)
+    rect(0, 16*y/60, x, 17*y/60)
+    fill(60,1, 204)
+    rect(0, 17*y/60, x, 18*y/60)
+    fill(44, 0, 204)
+    rect(0, 18*y/60, x, 20*y/60)
+    fill(0)
+    rect(0, y/3 - 0.5, x, y/3)
+    fill(18, 8, 204)
+    rect(0, y/3, x, 2*y/3)
+    
