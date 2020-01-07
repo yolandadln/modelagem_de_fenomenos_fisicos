@@ -1,12 +1,21 @@
 #dimensoes do jogo:
-x = 800
-y = 400
+x = 1000
+y = 500
+#posicao do submarino
+a = x/2 #horizontal
+b = y/3 #vertical
 
 def setup():
     size(x,y)
     
 def draw():
-    fill(36, 28, 255)
+    
+    global x, y, a, b
+    
+    tempo = second()
+    
+    #criando fundo:
+    fill(0)
     rect(0, 0, x, 3*y/60)
     rect(0, 3*y/60, x, 6*y/60)
     fill(51, 0, 255)
@@ -30,4 +39,21 @@ def draw():
     rect(0, y/3 - 0.5, x, y/3)
     fill(18, 8, 204)
     rect(0, y/3, x, 2*y/3)
+    
+    #criando medidor de oxigenio
+    yi = 10
+    yf = 15
+    xi = 10
+    xf = 150
+    fill(255)
+    rect(10, 10, 150, 15)
+    text("oxygen",20,40)
+    '''#while b > y/3:
+    while tempo <= 15:
+        fill(204, 21, 18)
+        rect(xf, yi, xf - 10, yf)
+        tempo = 0
+    '''
+    #criando submarino:
+    fill(255,225,54)
     
